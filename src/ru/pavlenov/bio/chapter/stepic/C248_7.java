@@ -1,0 +1,78 @@
+package ru.pavlenov.bio.chapter.stepic;
+
+import org.apache.commons.lang.StringUtils;
+import ru.pavlenov.bio.amino.FittingAlignment;
+import ru.pavlenov.bio.amino.GlobalAlignment;
+import ru.pavlenov.bio.amino.InvalidAlphabetException;
+import ru.pavlenov.bio.amino.Move;
+import ru.pavlenov.bio.utils.Dump;
+
+import java.util.ArrayList;
+
+/**
+ * Какой сам ☭
+ * User: Павленов Семён
+ * Date: 26.12.13 18:29
+ */
+public class C248_7 {
+
+    public static void start() throws InvalidAlphabetException {
+
+        String str1 = "TACTGCGCCGGTTATCGCTGGGTGAGTGAAGACTATCTTGACCATCTTCAACTCGACACCTCGCACTCCGGTGTAGAGAAAGATCATAGCGATATATTTGTAAGATCCCTTACCAGCCCCTTACCATATCCTTCCGACCCTTATAGACGTGTCGAGAAAAATACCCCTATATGGCGTATGGGATTCGGCATATCTTCGACGGCGTCGCCTCAGCGGTAGGAAGCAGTTGAGAGTGAAGGCTTAAGCCTAGTTTTGTCAAGTATTTGAAGTTGCCATTTGCCAACGACATATGAGATTGCCAAAGTTTGGTGCACCCGGCCCCTATTACCCCAATCCGGGGCATTCAAGAGTAATTATCAATCCGTCTTAGTCTTCAGGCACGTTGGTTTGGCTATTAAACGACAGGCTCATTATGCCTCCGGACCCGAATGATTAGGGCCGCCAACATCTCTCAACCGTGACCCATCACTGTTTTGGGCCGTGTAAACAATGAAGCTCAATCTTTCTAATGTTATCTGTCGCAGGTTGCAGGGACCTCACCGACCTGTCTCTTGAAGTGGACGAGCCTCTTCAACGGTGTCGATTAGAGAACAAAGCCGATTAACCGGCCGGCGAACGTACCACTGAGAGTACTTAATGTGAGGATTCCCTCAACGCTGTAGGCTGGTAAGATTCGGTTCGGTGGACGACCCCCCATGGGGAGCTGTACAGTCTTGAATGGGACGATTGCACGGCTAGAGATGGCGTCTTAACCATGTGCCAGCGGTGTTAAAGTGGGACGGCCATTAGGGCATATTCAACGCGGAGAGTCTTGGTTTCGTACGCACTGAGTTCTCTGTCGTAT";
+        String str2 = "GCAAGTGTGTGTTGGCAACTAACTTGATGTAAGGGTTCCCCACACTGCAGGCTGAATGGAATTCGTCGGGTGTACGACCCCTACGGGGAGTTATAACAGTTCTTAATGGACGAAGGTACGATTAGGGATGGCCGTCCTTAACCATGAGTCCCACATCATCACAAATGGGAGGTCTACTAAGGCATACTCAACGCAGAGAGTTCTCAATTTCACGTACCAATCGAGTCTACCGGCCATACGCCGTGCGCTCCACGGTCACAAAGGGGAGTTTGACACTTGCCTTAGCTTTATTCAATTTAGGGGACTCCCACGGAAGACTGGCTACGATCAATTCAAAATTATCCCGACTCCGAAGGATTCTCGACCCCAAACGCTCAGGGGGGCTTTGTGTAAGTATGGAAGGAGCGTCAGCACATCTACATCCACCTAAGAATCTGAGGTGCGTCGCGACCGGAAGTATCCAGTAAGTCCGTTGATGTGATACATATGGACAGATGCGATGTCCCATTGGTCAATAATAATGCCGATGGGTTATCTAACCAATCGGTCTGAGGTGCCAGATCCAACCACTGGGGAGTTTCCCACTAATAGCTAGTTGATGATCTTTGTAATGAAAGTCTACCCCTGCCTGCACATTTGGAGAATGCTCTAAAACTGTAGACTAGTTCCGGATCTGGTGTAACGAATCTTGTCGTGTAGCCCATCAGAGTTACTGAAAGGGAGCCATAGTTCCGTCCTGAATTTATTAATACGGGTTATAGGTAAGGAGGCAAGCCTTCGGGAGATTATCAGGACAGTTGCAGGTACTCCTGGATACGCCGTACTCCATAACGTCCAAAACCGAGGTGGATCATAGGTACCAATTATGCAATCTCAGTTAAAACCTTGTACCTGGAATTGAACGAAATGCTCCAATTTGACACATTCGGAGTGTCCGCGGAGAAGCCACTGCCCCTA";
+
+        int len1 = str1.length();
+        int len2 = str2.length();
+
+        GlobalAlignment alignment = new GlobalAlignment(str1, str2);
+        alignment.setPenalty(2).setMatch(1);
+        alignment.make();
+
+        Integer[][] weight = alignment.getWeightMatrix();
+
+        int maxScore = Integer.MIN_VALUE;
+        int maxI = 0;
+        int maxJ = 0;
+
+        for (int i = 0; i <= str1.length(); i++) {
+
+            if (weight[i][str2.length()] >= maxScore) {
+                maxScore = weight[i][str2.length()];
+                maxI = i;
+                maxJ = str2.length();
+            }
+
+        }
+
+        for (int j = 0; j <= str2.length(); j++) {
+
+            if (weight[str1.length()][j] >= maxScore) {
+                maxScore = weight[str1.length()][j];
+                maxI = str1.length();
+                maxJ = j;
+            }
+
+        }
+
+        Dump.println("["+maxI+":"+maxJ+"] -> "+maxScore);
+
+
+//        Dump.println(weight);
+//        Dump.println(alignment.trackToString());
+
+        alignment.track(maxI-1, maxJ-1);
+
+        ArrayList<Character> bestResult1 = alignment.getResult1();
+        ArrayList<Character> bestResult2 = alignment.getResult2();
+
+        String over1 = StringUtils.join(bestResult1, "");
+        String over2 = StringUtils.join(bestResult2, "");
+
+        Dump.println(StringUtils.join(bestResult1, ""));
+        Dump.println(StringUtils.join(bestResult2, ""));
+//        Dump.println("");
+
+
+    }
+
+}

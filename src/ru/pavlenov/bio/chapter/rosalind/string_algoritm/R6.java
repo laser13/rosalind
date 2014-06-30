@@ -1,0 +1,51 @@
+package ru.pavlenov.bio.chapter.rosalind.string_algoritm;
+
+import net.sf.jfasta.impl.FASTAElementIterator;
+import net.sf.jfasta.impl.FASTAFileReaderImpl;
+import ru.pavlenov.bio.genome.DNA;
+import ru.pavlenov.bio.utils.Dump;
+
+import java.io.IOException;
+import java.io.StringReader;
+
+/**
+ * Какой сам ☭
+ * User: Павленов Семён
+ * Date: 28.12.13 13:04
+ */
+public class R6 {
+
+    public static void start() throws IOException {
+
+        String data = ">Rosalind_1534\n" +
+                "CGCGACTCTGACCAAGCTCGCGACCCAGGTGCTACCAAGTGCCTTTTGCGACCGGATGGG\n" +
+                "ATAGGAACGTTTGGACTTTCTAGATTTGTAATATGGCTACAGTACTCCTAACATTCCGGA\n" +
+                "ACTATTGACCCAACATTTGATCGGCCACGGAAGTGCATAACGCTCCGGCCGCTTGGAAAG\n" +
+                "AGATTAGTGCGACCTAGTGCAGCCTCTACGAACTGATCGAGCCGTGTGTACAATCGACCG\n" +
+                "TTCCCCGTAATATAATCTAATCTTCGAGTTAATGTGCACGGTTTTCCCGTCTATTCTCCC\n" +
+                "GGGCTCTACTAATCCCCACCCAAAGCGCGGCGCAGTCTGAACCCCTTAATGAAAGCGGTT\n" +
+                "TTTAGGCGATAGTAATCAGGAAGCCGCCGCCCACGAGTTAATTTCAGAAACCTCCTGTTA\n" +
+                "ACTTCATCGTGTCGCACAATCCGTCCGACCCATGCTAGGTAAATGGGAAATATTGTGGCA\n" +
+                "CCGGCGCCGGTTCGGCTCTCATGTGTCCTGAGCCCACGGGGAGAGAAGGGGCAACGCGAC\n" +
+                "TCACACAAACTTGGTGTCCCTATTTTGTTAAGAGCGAGGAGTTAACATCTTCCACTAACT\n" +
+                "ACCGGTAAGATTACGTGCCTTAGGTACTACCTGATCAGCGGGTTATGCTGCCCGACTGGC\n" +
+                "GTGGCGGAAATAGCGCAAATTAAGGCTTTCCAACATTAATACGTAGGCTTCTCAGTATTC\n" +
+                "CGGCGCGTGCGTCTAACTACCGCCTTGTGTCATCATAGTTGGGTAAGTCACTCCGCCGCC\n" +
+                "ACAGCTCCCTTAAGCAGAAATCTGCATTAGAGGTAAGTGCTGCCATGTGAAGGACAATCA\n" +
+                "GAGCATTTTTTACCATTTCGTTTAGTCATAATGTTGGTGGCATATGGTAGCGATCAGTAA\n" +
+                "TCAAGGGAAACATGGATAGGGACCTGCGGAGGCATTTGTTAAAATACATTAGTGGTCCCT\n" +
+                "ATCTTCTATA";
+
+        final FASTAElementIterator it = new FASTAFileReaderImpl(new StringReader(data)).getIterator();
+
+        String text = it.next().getSequence();
+
+        Dump.println(text);
+
+        DNA dna = new DNA(text);
+
+        dna.getReversePolindrome(4, 12);
+
+    }
+
+}
