@@ -32,7 +32,7 @@ public class Convert {
             this.fasta = fasta;
         }
 
-        public ArrayList<String> toStringList() throws IOException {
+        public List<String> toStringList() throws IOException {
             ArrayList<String> result = new ArrayList<>();
             FASTAElementIterator it = fasta.getIterator();
             while (it.hasNext()) {

@@ -29,7 +29,7 @@ public class Base {
      * Пытаемся сопоставить кусочки ДНК (read) различной длины и перехлёстов
      * @param reads
      */
-    public static String getShortestSuperstring(ArrayList<String> reads, int minLenOverlap) {
+    public static String getShortestSuperstring(List<String> reads, int minLenOverlap) {
 
         // Говорим что суперстрока сейчас равна первому риду
         String superstring = reads.get(0);

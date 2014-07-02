@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ⓭
@@ -23,7 +24,7 @@ public class Long {
         String data = File.readFile("/home/laser13/IdeaProjects/bio/src/ru/pavlenov/bio/chapter/rosalind/assembly/Long.data", Charset.defaultCharset());
 
         FASTAFileReaderImpl fasta = new FASTAFileReaderImpl(new StringReader(data));
-        ArrayList<String> reads = Convert.from(fasta).toStringList();
+        List<String> reads = Convert.from(fasta).toStringList();
 
         String ss = Base.getShortestSuperstring(reads, (reads.get(0).length() / 3));
 
