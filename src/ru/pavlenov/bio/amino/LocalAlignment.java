@@ -15,7 +15,8 @@ public class LocalAlignment {
     private ArrayList<Character> result1;
     private ArrayList<Character> result2;
 
-    private int σ;
+    private int match = 1;
+    private int σ = 0;
     private ScoryngMatrixType scoryngMatrixType;
 
     private Move[][] trackMatrix;
@@ -23,7 +24,7 @@ public class LocalAlignment {
     private Integer globalMaxWeight;
     private Integer startI;
     private Integer startJ;
-    private int match;
+
 
     public Integer getStartI() {
         return startI;
@@ -121,13 +122,7 @@ public class LocalAlignment {
                 int right = weightMatrix[i][j-1] - σ;
                 int bias = weightMatrix[i-1][j-1];
 
-//                Dump.print(i + ":" + j + " > " + s1[i - 1] + "|" + s2[j - 1] + " > ");
-//                Dump.print(s1[i - 1] == s2[j - 1]);
-//                Dump.print(" = [" + down + ", " + right + ", " + bias + "]");
-
                 bias += getScore(s1[i-1], s2[j-1]);
-
-//                Dump.print(" = [" + down + ", " + right + ", " + bias + "]");
 
                 Move move;
                 int max;
@@ -159,9 +154,6 @@ public class LocalAlignment {
 
                 weightMatrix[i][j] = max;
                 trackMatrix[i-1][j-1] = move;
-
-//                Dump.print(" max:" + weightMatrix[i][j]);
-//                Dump.println(" move: " + trackMatrix[i-1][j-1]);
 
             }
 

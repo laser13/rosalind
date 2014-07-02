@@ -9,6 +9,7 @@ import ru.pavlenov.bio.chapter.rosalind.probability.*;
 import ru.pavlenov.bio.chapter.rosalind.proteomics.*;
 import ru.pavlenov.bio.chapter.rosalind.sequence.*;
 import ru.pavlenov.bio.chapter.rosalind.string_algoritm.Kmer;
+import ru.pavlenov.bio.chapter.rosalind.string_algoritm.Lcsq;
 import ru.pavlenov.bio.chapter.rosalind.textbook.*;
 import ru.pavlenov.bio.chapter.rosalind.assembly.Long;
 import ru.pavlenov.bio.chapter.stepic.*;
@@ -27,7 +28,7 @@ public class Main {
 //        Dump.println(112 % 9);
 //        Dump.println(((-5 % 9) + 9) % 9);
 
-        Kmer.start();
+        Pdst.start();
 
         long end = System.nanoTime();
 
