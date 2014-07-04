@@ -295,4 +295,32 @@ public class Kmer {
         return kmers;
     }
 
+    /**
+     * Подсчитываем кол-во вхождений каждого нуклеотида
+     *
+     * @param text
+     * @return
+     */
+    public static Map<Character, Integer> calcCounts(String text) {
+
+        Map<Character, Integer> counts = new HashMap<>();
+        int[] cnt = new int[4];
+        for (char c : text.toCharArray()) {
+
+            if (c == 'A') cnt[0] += 1;
+            if (c == 'T') cnt[1] += 1;
+            if (c == 'G') cnt[2] += 1;
+            if (c == 'C') cnt[3] += 1;
+
+        }
+
+        counts.put('A', cnt[0]);
+        counts.put('T', cnt[1]);
+        counts.put('G', cnt[2]);
+        counts.put('C', cnt[3]);
+
+        return counts;
+
+    }
+
 }
