@@ -1,5 +1,9 @@
 package ru.pavlenov.scala.homework.rosalind.combinatorics
 
+import org.jscience.mathematics.number.LargeInteger
+import ru.pavlenov.bio.utils.Calc
+import ru.pavlenov.scala.utils.Prob
+
 /**
  * ⓭ + 52
  * Какой сам? by Pavlenov Semen 05.07.14.
@@ -21,6 +25,11 @@ object Pper {
     println("Start: Partial Permutations = [http://rosalind.info/problems/pper/]")
     println("==========================")
 
+    val n = 84
+    val k = 10
+    val m = 1000000
+
+    println(Prob.assign(n, k).mod(m))
 
   }
 
