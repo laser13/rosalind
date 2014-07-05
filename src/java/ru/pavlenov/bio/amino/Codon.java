@@ -138,7 +138,7 @@ public class Codon {
         hmA2P.put('P', new Acid("Pro", "Proline", "C5H7NO", 97.05276, new String[]{"CCA", "CCU", "CCC", "CCG"}));
         hmA2P.put('Q', new Acid("Gln", "Glutamine","C5H8N2O", 128.05858, new String[]{"CAA", "CAG"}));
         hmA2P.put('R', new Acid("Arg", "Arginine", "C6H12N4O", 156.10111, new String[]{"AGA", "AGG", "CGA", "CGU", "CGC", "CGG"}));
-        hmA2P.put('S', new Acid("Ser", "Serine", "C3H5NO2", 87.03203, new String[]{"AGU", "AGC"}));
+        hmA2P.put('S', new Acid("Ser", "Serine", "C3H5NO2", 87.03203, new String[]{"AGU", "AGC", "UCU", "UCC", "UCA", "UCG"}));
         hmA2P.put('T', new Acid("Thr", "Threonine", "C4H7NO2", 101.04768, new String[]{"ACA", "ACU", "ACC", "ACG"}));
         hmA2P.put('V', new Acid("Val", "Valine", "C5H9NO", 99.06841, new String[]{"GUA", "GUU", "GUC", "GUG"}));
         hmA2P.put('W', new Acid("Trp", "Tryptophan", "C11H10N20", 186.07931, new String[]{"UGG"}));

@@ -8,6 +8,7 @@ import ru.pavlenov.bio.utils.StringArray;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.function.BiConsumer;
 
 /**
  * Какой сам ☭
@@ -77,6 +78,14 @@ public class Peptide {
     }
 
     public Long howMany(int mod) {
+
+        hmA2N.forEach(new BiConsumer<Character, Codon.Acid>() {
+            @Override
+            public void accept(Character c, Codon.Acid a) {
+                Dump.print(c + " -> " + a.getTriplet().length + ", ");
+            }
+        });
+        Dump.ln();
 
         Long result = 3L;
         for (char a : acids) {

@@ -6,4 +6,24 @@ package ru.pavlenov.scala.utils
  */
 object Str {
 
+  /**
+   * Подсчитываем кол-во символов в строке (символ => кол-во)
+   *
+   * @param str
+   * @return
+   */
+  def counts(str: String) : Map[Char, Int] = {
+
+    var map: Map[Char, Int] = Map()
+
+    str.foreach(c => {
+      if (!map.contains(c)) {
+        map += (c -> str.count(_ == c))
+      }
+    })
+
+    return map
+
+  }
+
 }

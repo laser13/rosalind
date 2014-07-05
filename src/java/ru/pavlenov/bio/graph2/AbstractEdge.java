@@ -1,9 +1,5 @@
 package ru.pavlenov.bio.graph2;
 
-import lombok.Getter;
-import lombok.Setter;
-import ru.pavlenov.bio.utils.Dump;
-
 /**
  * Какой сам ⚝
  * Author: Pavlenov Semen
@@ -13,26 +9,51 @@ import ru.pavlenov.bio.utils.Dump;
  */
 public abstract class AbstractEdge<T, N> implements IBaseEdge<T, N> {
 
-    @Getter
-    @Setter
     protected int index;
-
-    @Getter
-    @Setter
     protected Status status = Status.VIRGIN;
-
-    @Getter
-    @Setter
     protected T data;
-
-    @Getter
-    @Setter
     protected N sourceNode;
-
-    @Getter
-    @Setter
     protected N targetNode;
 
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public N getSourceNode() {
+        return sourceNode;
+    }
+
+    public void setSourceNode(N node) {
+        this.sourceNode = node;
+    }
+
+    public N getTargetNode() {
+        return targetNode;
+    }
+
+    public void setTargetNode(N node) {
+        this.targetNode = node;
+    }
     @Override
     public N getOtherNode(N node) {
 

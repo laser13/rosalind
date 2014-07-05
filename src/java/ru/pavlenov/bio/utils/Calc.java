@@ -33,7 +33,7 @@ public class Calc {
         if (k > n - k) k = n - k;
         long result = 1;
         for (int i = 1; i <= k; i++) {
-            result *= (n - (k - 1));
+            result *= (n - (k - i));
             result /= i;
         }
         return result;

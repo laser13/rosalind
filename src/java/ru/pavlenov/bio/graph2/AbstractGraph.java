@@ -1,7 +1,5 @@
 package ru.pavlenov.bio.graph2;
 
-import lombok.Getter;
-
 import java.util.*;
 
 /**
@@ -13,10 +11,8 @@ import java.util.*;
  */
 public abstract class AbstractGraph<N, E extends IBaseEdge<?, N>> implements IBaseGraph<N, E> {
 
-    @Getter
     protected List<E> edges;
 
-    @Getter
     protected Map<N, List<E>> nodes;
 
     public AbstractGraph() {
@@ -27,6 +23,14 @@ public abstract class AbstractGraph<N, E extends IBaseEdge<?, N>> implements IBa
     public AbstractGraph(int nodeSize) {
         edges = new ArrayList<>();
         nodes = new HashMap<>();
+    }
+
+    public List<E> getEdges() {
+        return edges;
+    }
+
+    public Map<N, List<E>> getNodes() {
+        return nodes;
     }
 
     @Override
