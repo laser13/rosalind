@@ -1,14 +1,12 @@
 package ru.pavlenov.scala.utils
 
-import org.jscience.mathematics.number.LargeInteger
-
 /**
  * ⓭ + 38
  * Какой сам? by Pavlenov Semen 04.07.14.
  */
 object Prob {
 
-  def gcContent(text: String, gc: Double) : Double = {
+  def gcContent(text: String, gc: Double): Double = {
 
     val probAT = math.log((1 - gc) / 2)
     val probGC = math.log(gc / 2)
@@ -20,7 +18,7 @@ object Prob {
 
   }
 
-  def gcContent(counts: Map[Char, Int], gc: Double) : Double = {
+  def gcContent(counts: Map[Char, Int], gc: Double): Double = {
 
     val probAT = math.log((1 - gc) / 2)
     val probGC = math.log(gc / 2)
@@ -44,7 +42,7 @@ object Prob {
    * @param k
    * @return
    */
-  def choose(n: Int, k: Int) : Long = {
+  def choose(n: Int, k: Int): Long = {
     // Use symmetry of Pascal's triangle
     val k1 = if (k > n - k) n - k else k
     var result: Long = 1
@@ -69,12 +67,12 @@ object Prob {
    * @param k
    * @return
    */
-  def assign(n: Int, k: Int) : BigInt = {
+  def assign(n: Int, k: Int): BigInt = {
     val r: BigInt = fact(n)./(fact(n - k))
     r
   }
 
-  def fact(n: Int) : BigInt = {
+  def fact(n: Int): BigInt = {
     (1 to n).map(BigInt.int2bigInt).product
   }
 

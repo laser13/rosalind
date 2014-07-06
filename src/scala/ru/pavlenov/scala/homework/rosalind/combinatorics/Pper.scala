@@ -1,7 +1,5 @@
 package ru.pavlenov.scala.homework.rosalind.combinatorics
 
-import org.jscience.mathematics.number.LargeInteger
-import ru.pavlenov.bio.utils.Calc
 import ru.pavlenov.scala.utils.Prob
 
 /**

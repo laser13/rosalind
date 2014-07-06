@@ -18,9 +18,9 @@ object Comb {
    * @param n
    * @return
    */
-  def catalan(n: Int) : BigInt = {
+  def catalan(n: Int): BigInt = {
     var c: BigInt = 1
-    for (i <- 1 to n-1) {
+    for (i <- 1 to n - 1) {
       c = (c * (4 * i + 2)) / (i + 2)
     }
     c

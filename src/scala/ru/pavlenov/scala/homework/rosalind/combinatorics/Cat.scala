@@ -1,6 +1,6 @@
 package ru.pavlenov.scala.homework.rosalind.combinatorics
 
-import ru.pavlenov.scala.utils.{Str, File, Comb}
+import ru.pavlenov.scala.utils.File
 
 import scala.collection.mutable
 
@@ -39,11 +39,11 @@ object Cat {
    * @param text
    * @return
    */
-  def countNonCrossing(text: String) : BigInt = {
+  def countNonCrossing(text: String): BigInt = {
 
     var map = Map[String, BigInt]()
 
-    def calc(text: String) : BigInt = {
+    def calc(text: String): BigInt = {
       if (text.length <= 2) return 1
       else if (map.contains(text)) return map(text)
 
@@ -68,10 +68,10 @@ object Cat {
    * @param text
    * @return
    */
-  def findSliceLine(text: String) : mutable.MutableList[Int] = {
-    val bonding = Map[Char, Char]('A'->'U', 'U'->'A', 'C'->'G', 'G'->'C')
+  def findSliceLine(text: String): mutable.MutableList[Int] = {
+    val bonding = Map[Char, Char]('A' -> 'U', 'U' -> 'A', 'C' -> 'G', 'G' -> 'C')
     val indeces = mutable.MutableList[Int]()
-    (1 to text.length-1 by 2).foreach(i => {
+    (1 to text.length - 1 by 2).foreach(i => {
       if (text(0) == bonding(text(i)) && checkSub(text.substring(1, i))) {
         indeces += i
       }

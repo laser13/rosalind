@@ -12,7 +12,7 @@ object Str {
    * @param str
    * @return
    */
-  def counts(str: String) : Map[Char, Int] = {
+  def counts(str: String): Map[Char, Int] = {
 
     var map: Map[Char, Int] = Map().withDefaultValue(0)
 
