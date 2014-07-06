@@ -14,7 +14,7 @@ object Str {
    */
   def counts(str: String) : Map[Char, Int] = {
 
-    var map: Map[Char, Int] = Map()
+    var map: Map[Char, Int] = Map().withDefaultValue(0)
 
     str.foreach(c => {
       if (!map.contains(c)) {
@@ -22,7 +22,7 @@ object Str {
       }
     })
 
-    return map
+    map
 
   }
 

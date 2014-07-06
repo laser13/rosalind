@@ -1,6 +1,6 @@
 package ru.pavlenov.scala
 
-import ru.pavlenov.scala.homework.rosalind.combinatorics.{Pper, Mrna}
+import ru.pavlenov.scala.homework.rosalind.combinatorics.{Cat, Pper, Mrna}
 import ru.pavlenov.scala.homework.rosalind.probability.Eval
 import ru.pavlenov.scala.utils.Base
 
@@ -15,7 +15,7 @@ object Main {
     println("Running scala...")
 
     Base.timed {
-      Pper.start()
+      Cat.start()
     }
 
   }
