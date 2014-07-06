@@ -1,7 +1,7 @@
 package ru.pavlenov.scala
 
-import ru.pavlenov.scala.homework.rosalind.combinatorics.{Cat, Pper, Mrna}
-import ru.pavlenov.scala.homework.rosalind.probability.Eval
+import ru.pavlenov.scala.homework.rosalind.combinatorics._
+import ru.pavlenov.scala.homework.rosalind.probability._
 import ru.pavlenov.scala.utils.Base
 
 /**
@@ -15,7 +15,7 @@ object Main {
     println("Running scala...")
 
     Base.timed {
-      Cat.start()
+      Mmch.start()
     }
 
   }

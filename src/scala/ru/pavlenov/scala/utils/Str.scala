@@ -13,17 +13,13 @@ object Str {
    * @return
    */
   def counts(str: String): Map[Char, Int] = {
-
     var map: Map[Char, Int] = Map().withDefaultValue(0)
-
     str.foreach(c => {
       if (!map.contains(c)) {
         map += (c -> str.count(_ == c))
       }
     })
-
     map
-
   }
 
 }

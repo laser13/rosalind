@@ -1,6 +1,6 @@
 package ru.pavlenov.scala.homework.rosalind.combinatorics
 
-import ru.pavlenov.scala.utils.Prob
+import ru.pavlenov.scala.utils.{Comb, Prob}
 
 /**
  * ⓭ + 52
@@ -27,7 +27,7 @@ object Pper {
     val k = 10
     val m = 1000000
 
-    println(Prob.assign(n, k).mod(m))
+    println(Comb.assign(n, k).mod(m))
 
   }
 
