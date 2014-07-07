@@ -15,7 +15,7 @@ object Main {
     println("Running scala...")
 
     Base.timed {
-      Mmch.start()
+      Rnas.start()
     }
 
   }
