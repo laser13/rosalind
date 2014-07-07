@@ -12,14 +12,6 @@ object Str {
    * @param str
    * @return
    */
-  def counts(str: String): Map[Char, Int] = {
-    var map: Map[Char, Int] = Map().withDefaultValue(0)
-    str.foreach(c => {
-      if (!map.contains(c)) {
-        map += (c -> str.count(_ == c))
-      }
-    })
-    map
-  }
+  def counts(str: String): Map[Char, Int] = str.groupBy(c => c.toUpper).map(e => (e._1, e._2.length)).withDefaultValue(0)
 
 }

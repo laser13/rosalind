@@ -2,22 +2,19 @@ package ru.pavlenov.scala
 
 import ru.pavlenov.scala.homework.rosalind.combinatorics._
 import ru.pavlenov.scala.homework.rosalind.probability._
-import ru.pavlenov.scala.utils.Base
+import ru.pavlenov.scala.utils.{Str, Base}
 
 /**
  * ⓭ + 13
  * Какой сам? by Pavlenov Semen 04.07.14.
  */
-object Main {
+object Main extends App{
 
-  def main(args: Array[String]) {
+  println("Running scala...\n\n")
 
-    println("Running scala...")
-
-    Base.timed {
-      Rnas.start()
-    }
-
+  Base.timed {
+    Mrna.start()
   }
+
 
 }

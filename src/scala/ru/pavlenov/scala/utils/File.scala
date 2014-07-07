@@ -8,15 +8,11 @@ import scala.io.Source
  */
 object File {
 
-  def getClassDir(className: String) = {
-    System.getProperty("user.dir") + "/src/scala/" + className.replaceAll("\\.", "/").replace("$", "")
-  }
+  def getClassDir(className: Any) = System.getProperty("user.dir") + "/src/scala/" + className.getClass.getName.replaceAll("\\.", "/").replace("$", "")
 
-  def fromData(className: String) = {
-    Source.fromFile(getClassDir(className) + ".data").mkString
-  }
+  def fromData(className: String) = Source.fromFile(getClassDir(className) + ".data").mkString
 
-  def readFasta(className: String) = {
+  def readFasta(className: Any) = {
     val header = """>(.+)(\|.+)?""".r
     var lines = Source.fromFile(getClassDir(className) + ".data").getLines().filterNot(_.isEmpty)
     var sequences = List[(String, String)]()

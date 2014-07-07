@@ -6,16 +6,16 @@ package ru.pavlenov.scala.utils
  */
 object Prob {
 
+  /**
+   *
+   *
+   * @param text
+   * @param gc
+   * @return
+   */
   def gcContent(text: String, gc: Double): Double = {
-
-    val probAT = math.log((1 - gc) / 2)
-    val probGC = math.log(gc / 2)
-
-    val countAT = text.count(_ == 'A') + text.count(_ == 'T')
-    val countGC = text.count(_ == 'G') + text.count(_ == 'C')
-
-    probAT * countAT + probGC * countGC
-
+    val counts = Str.counts(text)
+    gcContent(counts, gc)
   }
 
   def gcContent(counts: Map[Char, Int], gc: Double): Double = {

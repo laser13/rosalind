@@ -20,7 +20,7 @@ object Comb {
    */
   def catalan(n: Int): BigInt = {
     var c: BigInt = 1
-    for (i <- 1 to n - 1) c = (c * (4 * i + 2)) / (i + 2)
+    for (i <- 1 until n) c = (c * (4 * i + 2)) / (i + 2)
     c
   }
 
@@ -38,10 +38,10 @@ object Comb {
    */
   def choose(n: Int, k: Int): Long = {
     // Use symmetry of Pascal's triangle
-    val k1 = if (k > n - k) n - k else k
+    val j = if (k > n - k) n - k else k
     var result: Long = 1
-    for (i <- 1 to k1) {
-      result *= (n - (k1 - i))
+    for (i <- 1 to j) {
+      result *= (n - (j - i))
       result /= i
     }
     result
@@ -61,9 +61,7 @@ object Comb {
    * @param k
    * @return
    */
-  def assign(n: Int, k: Int): BigInt = {
-    fact(n) / fact(n - k)
-  }
+  def assign(n: Int, k: Int): BigInt = fact(n) / fact(n - k)
 
   /**
    * Считаем факториал числа
@@ -71,8 +69,6 @@ object Comb {
    * @param n
    * @return
    */
-  def fact(n: Int): BigInt = {
-    (1 to n).map(BigInt.int2bigInt).product
-  }
+  def fact(n: Int): BigInt = (1 to n).map(BigInt.int2bigInt).product
 
 }

@@ -24,7 +24,7 @@ object Cat {
     println("from http://rosalind.info/problems/cat/")
     println("==========================")
 
-    val text = File.readFasta(this.getClass.getName)(0)._2
+    val text = File.readFasta(this)(0)._2
     val result = countNonCrossing(text)
     println("Given: " + text)
     println("Result: " + result)
@@ -71,7 +71,7 @@ object Cat {
   def findSliceLine(text: String): mutable.MutableList[Int] = {
     val bonding = Map[Char, Char]('A' -> 'U', 'U' -> 'A', 'C' -> 'G', 'G' -> 'C')
     val indeces = mutable.MutableList[Int]()
-    (1 to text.length - 1 by 2).foreach(i => {
+    (1 until text.length by 2).foreach(i => {
       if (text(0) == bonding(text(i)) && checkSub(text.substring(1, i))) {
         indeces += i
       }
