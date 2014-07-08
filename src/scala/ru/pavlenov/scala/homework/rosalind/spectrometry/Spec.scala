@@ -1,10 +1,7 @@
 package ru.pavlenov.scala.homework.rosalind.spectrometry
 
-import ru.pavlenov.bio.amino.Codon.Acid
-import ru.pavlenov.bio.amino.{Codon, Peptide}
 import ru.pavlenov.scala.libs.peptide.AminoAcid
 import ru.pavlenov.scala.utils.File
-import scala.collection.JavaConversions._
 
 /**
  * ⓭ + 27
@@ -27,21 +24,14 @@ object Spec {
     println("from http://rosalind.info/problems/spec/")
     println("==========================")
 
-    val mass = File.fromData(this).split("\\n").map(_ toFloat).reverse
-    var mazz = new Array[Int](mass.length-1)
-
-    println(mass.mkString(", "))
+    val mass = File.fromData(this).map(_ toFloat).reverse
+    val mazz = new Array[Int](mass.length - 1)
 
     for (i <- 0 until mass.length-1) {
-      mazz(i) = ((mass(i) - mass(i+1)) * 100000).toInt / 100000
+      mazz(mass.length-2-i) = ((mass(i) - mass(i+1)) * 10000000).toInt / 100000
     }
 
-    val mass2char = AminoAcid.getMassChar.map(el => { ( el._1/100000, el._2 ) }).toMap.withDefaultValue(0)
-
-    println(mass2char.mkString(" | "))
-    println(mazz.mkString(" | "))
-
-    mazz = mazz.reverse
+    val mass2char = AminoAcid.getMassChar.map(el => { ( el._1/1000, el._2 ) }).toMap.withDefaultValue('#')
 
     mazz.foreach(m => {
       print(mass2char(m))

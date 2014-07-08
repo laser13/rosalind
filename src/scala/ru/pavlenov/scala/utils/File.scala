@@ -8,11 +8,11 @@ import scala.io.Source
  */
 object File {
 
-  def getClassDir(clazz: Any) = System.getProperty("user.dir") + "/src/scala/" + clazz.getClass.getName.replaceAll("\\.", "/").replace("$", "")
+  def getClassDir(clazz: AnyRef) = System.getProperty("user.dir") + "/src/scala/" + clazz.getClass.getName.replaceAll("\\.", "/").replace("$", "")
 
-  def fromData(clazz: Any) = Source.fromFile(getClassDir(clazz) + ".data").mkString
+  def fromData(clazz: AnyRef) = Source.fromFile(getClassDir(clazz) + ".data").getLines().filterNot(_.isEmpty).toArray
 
-  def readFasta(clazz: Any) = {
+  def readFasta(clazz: AnyRef) = {
     val header = """>(.+)(\|.+)?""".r
     var lines = Source.fromFile(getClassDir(clazz) + ".data").getLines().filterNot(_.isEmpty)
     var sequences = List[(String, String)]()

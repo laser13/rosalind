@@ -24,7 +24,7 @@ object Eval {
 
     println("Start Eval")
 
-    val data = File.fromData(this.getClass.getName) split "\\n"
+    val data = File.fromData(this)
 
     val n = data(0).toInt
     val text = data(1)

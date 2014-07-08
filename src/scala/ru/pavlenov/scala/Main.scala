@@ -2,8 +2,8 @@ package ru.pavlenov.scala
 
 import ru.pavlenov.scala.homework.rosalind.combinatorics._
 import ru.pavlenov.scala.homework.rosalind.probability._
-import ru.pavlenov.scala.homework.rosalind.spectrometry.Spec
-import ru.pavlenov.scala.utils.{Str, Base}
+import ru.pavlenov.scala.homework.rosalind.spectrometry._
+import ru.pavlenov.scala.utils._
 
 /**
  * ⓭ + 13
@@ -14,7 +14,7 @@ object Main extends App {
   println("Running scala...\n\n")
 
   Base.timed {
-    Spec.start()
+    Full.start()
   }
 
 
