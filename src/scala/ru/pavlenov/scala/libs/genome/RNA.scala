@@ -1,4 +1,4 @@
-package ru.pavlenov.scala.genome
+package ru.pavlenov.scala.libs.genome
 
 /**
  * Какой сам ⚝

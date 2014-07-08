@@ -157,6 +157,15 @@ public class Codon {
         return hmM2A;
     }
 
+    public static HashMap<Double, Character> getMass2Acid() {
+
+        HashMap<Double, Character> mass2acid = new HashMap<>();
+        hmA2P.forEach((character, acid) -> {
+            mass2acid.put(acid.getTrueMass(), character);
+        });
+        return mass2acid;
+    }
+
     public static Integer[] getMass() {
         return mass;
     }
