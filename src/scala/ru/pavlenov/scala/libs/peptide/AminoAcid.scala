@@ -36,7 +36,7 @@ object AminoAcid {
     ('V', "Val", "Valine",        "C5H9NO",   9906841,   Array("GUA", "GUU", "GUC", "GUG")),
     ('W', "Trp", "Tryptophan",    "C11H10N20",18607931,  Array("UGG")),
     ('Y', "Tyr", "Tyrosine",      "C9H9NO2",  16306333,  Array("UAC", "UAU")),
-    ('*', "XXX", "Stop",          null,       0,          Array("UGA", "UAG", "UAA"))
+    ('*', "Xxx", "Stop",          null,       0,         Array("UGA", "UAG", "UAA"))
   )
 
   def getCharMass = aa.map(el => (el._1, el._5))
