@@ -1,7 +1,5 @@
 package ru.pavlenov.scala.homework.rosalind.combinatorics
 
-import ru.pavlenov.bio.amino.Peptide
-
 import scala.collection.mutable
 
 /**

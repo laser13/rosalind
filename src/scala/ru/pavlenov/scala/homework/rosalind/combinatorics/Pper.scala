@@ -1,6 +1,6 @@
 package ru.pavlenov.scala.homework.rosalind.combinatorics
 
-import ru.pavlenov.scala.utils.{Comb, Prob}
+import ru.pavlenov.scala.utils.Comb
 
 /**
  * ⓭ + 52

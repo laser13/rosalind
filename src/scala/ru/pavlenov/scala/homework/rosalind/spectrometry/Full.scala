@@ -3,7 +3,7 @@ package ru.pavlenov.scala.homework.rosalind.spectrometry
 import ru.pavlenov.scala.libs.peptide.AminoAcid
 import ru.pavlenov.scala.utils.File
 
-import scala.collection.mutable
+import scala.collection.mutable.ArrayBuffer
 
 /**
  * ⓭ + 27
@@ -25,8 +25,8 @@ import scala.collection.mutable
 
 object Full {
 
-  val mass2char = AminoAcid.getMassChar.map(el => { ( el._1/1000, el._2 ) }).toMap.withDefaultValue('*')
-  val char2mass = AminoAcid.getCharMass.map(el => { ( el._1, el._2/1000 ) }).toMap.withDefaultValue(0)
+  // Карта соотношений [вес аминокислоты -> её символьное обозначение], вес с точностью до 2 знака
+  val mass2aa = AminoAcid.getMassChar.map(el => { ( el._1/1000, el._2 ) }).toMap.withDefaultValue('*')
 
   def start() {
 
@@ -35,40 +35,63 @@ object Full {
     println("==========================")
 
     val data = File.fromData(this).map(_ toDouble)
-    val massPeptide = data.head
+
+    // Масса целого пептида
+    val massPeptide = round(data.head)
+
+    // Массив масс b-ion & y-ion
     var masses = data.tail
+
+    // Длина икомого куска белка
     val n = (masses.length / 2) - 1
 
+    // Массив парных кусков
+    var pairs = ArrayBuffer[Array[Double]]()
 
-    var result = mutable.MutableList[Char]()
-    var curr = masses(0)
-
-    while (result.length < n) {
-
-      val c = find(curr, masses)
-      if (c != '*') {
-        result += c
-        curr += char2mass(c)
-        masses = masses.filter(c => { c - curr > 0 })
-
+    // Нужно найти парные куски (в сумме должны составлять всю массу пептида)
+    var not = ArrayBuffer[Int]()
+    for (i <- 0 until masses.length; j <- 0 until masses.length if !not.contains(j) ) {
+      if (round(masses(i) + masses(j)) == massPeptide) {
+        pairs += Array(masses(i), masses(j))
+        not += (i, j)
       }
-
     }
 
+    // Сюда будем складывать искомый белок
+    var result = ArrayBuffer[Char]()
+
+    // Берём самый маленький кусочек (ну и соответственно в связке с самым большим)
+    var _curr = pairs(0)
+    while (pairs.nonEmpty) {
+
+      var f = true; var curr = _curr
+      for (pair <- pairs) {
+
+        val m = curr(0); val m1 = pair(0); val m2 = pair(1)
+        val d1 = diff(m, m1); val d2 = diff(m, m2)
+
+        if (f) {
+
+          // Если разница между текущим куском и каким-нибудь из перебора состовляет осмысленную аминокислоту,
+          // то запишем её, текущий кусок удалим из пар, а тот который подошёл назначим текущим,
+          // таким оброзом мы найдём непрерывающуюся цепочку из аминокислот
+          if (mass2aa(d1) != '*') { result += mass2aa(d1); _curr = pair; f = false }
+          if (mass2aa(d2) != '*') { result += mass2aa(d2); _curr = pair; f = false }
+
+        }
+      }
+      // удаляем текущих кусок
+      pairs -= curr
+
+    }
     println(result.mkString)
-
-    println("KEKEP")
+    println("TVVWTGQERAHNREGGDQRVTKCKRFYCKYVADEHLYAGYQTQLCFSERRRNHWPPQWANQRYYWWFQHAPPPQHTNLSCETMNNQWLHYSTWNANYP")
 
   }
 
-  def diff(m1: Double, m2: Double) = math.abs(((m1 - m2) * 10000000).toInt / 100000)
+  def round(m: Double): Int = (m * 100000).toInt / 1000
 
-  def find(m1: Double, masses: Array[Double]): Char = {
-    for (m2 <- masses) {
-      val c: Char = mass2char(diff(m1, m2))
-      if (c != '*') return c
-    }
-    '*'
-  }
+  def diff(m1: Double, m2: Double) = math.abs(round(m1 - m2))
+
 
 }

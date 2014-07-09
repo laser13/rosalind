@@ -1,6 +1,6 @@
 package ru.pavlenov.scala.homework.rosalind.combinatorics
 
-import ru.pavlenov.scala.utils.{Comb, Str, File}
+import ru.pavlenov.scala.utils.{Comb, File, Str}
 
 /**
  * ⓭ + 28

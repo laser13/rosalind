@@ -1,7 +1,5 @@
 package ru.pavlenov.scala
 
-import ru.pavlenov.scala.homework.rosalind.combinatorics._
-import ru.pavlenov.scala.homework.rosalind.probability._
 import ru.pavlenov.scala.homework.rosalind.spectrometry._
 import ru.pavlenov.scala.utils._
 
