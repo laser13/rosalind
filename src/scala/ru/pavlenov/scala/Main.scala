@@ -12,7 +12,7 @@ object Main extends App {
   println("Running scala...\n\n")
 
   Base.timed {
-    Full.start()
+    Sgra.start()
   }
 
 
