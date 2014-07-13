@@ -64,6 +64,16 @@ object Comb {
   def assign(n: Int, k: Int): BigInt = fact(n) / fact(n - k)
 
   /**
+   * Считает кол-во всех возможных подмножеств из множества размером n
+   * пример: {1, 2, 3} => 2^3=8, {∅, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}}
+   * https://math.stackexchange.com/questions/236659/number-of-subsets-of-a-set-having-r-elements/236671#236671?newreg=053c78da5ac04ea5bb19a6cb5682ae19
+   *
+   * @param n
+   * @return
+   */
+  def countSubset(n: Int): BigInt = BigInt(2).pow(n)
+
+  /**
    * Считаем факториал числа
    *
    * @param n
