@@ -9,6 +9,7 @@ package ru.pavlenov.scala.libs.easygraph
  * ${GIVEN}
  * ${RETURN}
  */
-class Color {
-
+object Color extends Enumeration {
+  type Color = Value
+  val BLACK, WHITE, GRAY, RED, GREEN = Value
 }

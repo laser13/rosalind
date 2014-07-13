@@ -43,4 +43,27 @@ object AminoAcid {
 
   def getMassChar = aa.map(el => (el._5, el._1))
 
+  def mass5aa: Map[Int,Char] = getMassChar.map(el => { ( el._1/1000, el._2 ) }).toMap.withDefaultValue('*')
+
+  def round5(m: Double): Int = (m * 100000).toInt / 1000
+
+  def round(m: Double, p: Int): Int = (m * 100000).toInt / 1000
+
+  def diff(m1: Double, m2: Double): Int = math.abs(round5(m1 - m2))
+
+  /**
+   * Берёт последовательность масс (разница между соседями должна равнятся ~ массе некоторой аминокислоты)
+   * и отдаём последовательность аминокислот
+   *
+   * @param masses
+   * @return
+   */
+  def spectro2aa(masses: List[Double]) = {
+    var aa = List[Char]()
+    val m5a = mass5aa
+    for (i <- 0 to masses.length-2) {
+      aa = aa :+ m5a(diff(masses(i), masses(i+1)))
+    }; aa
+  }
+
 }
