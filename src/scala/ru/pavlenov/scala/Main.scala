@@ -13,7 +13,7 @@ object Main extends App {
   println("Running scala...\n\n")
 
   Base.timed {
-    Sset.start()
+    Conv.start()
   }
 
 
