@@ -26,7 +26,7 @@ import scala.collection.mutable.ArrayBuffer
 object Full {
 
   // Карта соотношений [вес аминокислоты -> её символьное обозначение], вес с точностью до 2 знака
-  val mass2aa = AminoAcid.getMassChar.map(el => { ( el._1/1000, el._2 ) }).toMap.withDefaultValue('*')
+  val mass2aa = AminoAcid.mass2aa.map(el => { ( el._1/1000, el._2 ) }).toMap.withDefaultValue('*')
 
   def start() {
 

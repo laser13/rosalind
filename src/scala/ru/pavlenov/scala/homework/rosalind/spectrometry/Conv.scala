@@ -26,27 +26,26 @@ object Conv {
     println("from http://rosalind.info/problems/conv/")
     println("==========================")
 
-    def fix(s: String): Int = {
+    def fix(s: String): Long = {
       val g = s.split("\\.")
-      g(0).toInt * math.pow(10, g(1).length).toInt + g(1).toInt
+      g(0).toLong * math.pow(10, g(1).length).toLong + g(1).toLong
     }
 
-    def unfix(v: Int, d: Int = 5): (Int, Int) = {
-      val f = math.pow(10, d).toInt
+    def unfix(v: Long, d: Int = 5): (Long, Long) = {
+      val f = math.pow(10, d).toLong
       val o = v % f
       ((v - o)/f, o)
     }
 
     val data = File.fromData(this)
-    val S1: Array[Int] = data(0).split("\\s").map(fix)
-    val S2: Array[Int] = data(1).split("\\s").map(fix)
+    val S1: Array[Double] = data(0).split("\\s").map(_ toDouble)
+    val S2: Array[Double] = data(1).split("\\s").map(_ toDouble)
     var Sdiff = mutable.HashMap[String, Int]()
 
     var cnt = 0
     for (s1 <- S1; s2 <- S2) {
       cnt += 1
-      val diff = math.abs(s1 - s2).toString
-
+      var diff = "%.5f".format(s1 - s2)
       if (Sdiff.contains(diff)) Sdiff(diff) += 1
       else Sdiff += (diff -> 1)
 
@@ -57,17 +56,17 @@ object Conv {
     println(Sdiff.size)
     println(cnt)
 
-    var maxVal = 0
+    var maxVal = 0l
     var maxKey = ""
     for ((k, v) <- Sdiff) {
       if (maxVal < v) { maxVal = v; maxKey = k }
     }
 
-    val key = unfix(maxKey.toInt)
+//    val key = unfix(maxKey.toInt)
 //
 //
     println(maxVal)
-    println(key._1 + "." + "%05d".format(key._2))
+//    println(key._1 + "." + "%05d".format(key._2))
 
 
   }

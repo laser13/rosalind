@@ -31,7 +31,7 @@ object Spec {
       mazz(mass.length-2-i) = ((mass(i) - mass(i+1)) * 10000000).toInt / 100000
     }
 
-    val mass2char = AminoAcid.getMassChar.map(el => { ( el._1/1000, el._2 ) }).toMap.withDefaultValue('#')
+    val mass2char = AminoAcid.mass2aa.map(el => { ( el._1/1000, el._2 ) }).toMap.withDefaultValue('#')
 
     mazz.foreach(m => {
       print(mass2char(m))
