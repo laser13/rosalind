@@ -43,8 +43,8 @@ object Sgra {
       val diff = AminoAcid.diff(mi, mj)
       m5a(diff) match {
         case c: Char if c != '*' =>
-          if (mj < mi) graph <<< (mj ~> mi)
-          if (mi < mj) graph <<< (mi ~> mj)
+          if (mj < mi) graph <~ (mj ~> mi)
+          if (mi < mj) graph <~ (mi ~> mj)
         case _ =>
       }
     }

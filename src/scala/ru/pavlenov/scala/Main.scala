@@ -1,6 +1,7 @@
 package ru.pavlenov.scala
 
 import ru.pavlenov.scala.homework.rosalind.combinatorics._
+import ru.pavlenov.scala.homework.rosalind.graphs._
 import ru.pavlenov.scala.homework.rosalind.spectrometry._
 import ru.pavlenov.scala.utils._
 
@@ -13,23 +14,23 @@ object Main extends App {
   println("Running scala...\n\n")
 
   Base.timed {
-//    Prsm.start()
+    Ddeg.start()
 
-    ForFun.curring1(4)(5)
-    ForFun.curring1(4){5}
-    ForFun.curring1 {4} {5}
-    ForFun.curring2(5) { v =>
-      v * v
-    }
-    ForFun.curring3(50) { v =>
-      v * v * v
-    }
-    ForFun.curring4(4) { v =>
-      v + 5 } { v =>
-      v - 4
-    }
-
-    ForFun.curring4(4) andThen { v => v + 5 } andThen { v => v - 4 }
+//    ForFun.curring1(4)(5)
+//    ForFun.curring1(4){5}
+//    ForFun.curring1 {4} {5}
+//    ForFun.curring2(5) { v =>
+//      v * v
+//    }
+//    ForFun.curring3(50) { v =>
+//      v * v * v
+//    }
+//    ForFun.curring4(4) { v =>
+//      v + 5 } { v =>
+//      v - 4
+//    }
+//
+//    ForFun.curring4(4) andThen { v => v + 5 } andThen { v => v - 4 }
 //    ForFun.curring(f => { f * 3 }) andThen(f => { "ready" })
 
   }

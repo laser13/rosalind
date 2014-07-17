@@ -32,6 +32,20 @@ object DiEdge {
 
 }
 
+class UnEdge[V](override val nodes: (V, V)) extends Edge[V] {
+
+  override def _1 = nodes._1
+  override def _2 = nodes._2
+
+  override def toString: String = "(" + nodes._1 + "~" + nodes._2 + ")"
+
+}
+
+object UnEdge {
+  def apply[V](n1: V, n2: V) = new UnEdge[V]((n1, n2))
+  def apply[V](nodes: (V,V)) = new UnEdge[V](nodes)
+}
+
 trait Edge[V] {
 
   val nodes: (V, V)

@@ -36,15 +36,32 @@ class DiNode[V](val value: V) extends Node[V] {
 }
 
 object DiNode {
-
   def apply[V](v: V) = new DiNode[V](v)
+}
 
+class UnNode[V](val value: V) extends Node[V] {
+
+  var color = Color.WHITE
+  var score: (Int, Option[UnNode[V]]) = (0, None)
+
+  def ~(that: UnNode[V]) = UnEdge(this.value, that.value)
+
+  def +(edge: UnEdge[V]) { this.edges = this.edges + edge }
+
+  def toScoreString: String = value.toString + "->" + score
+
+  override def toString: String = "E(" + edges.size + ")"
+
+}
+
+object UnNode {
+  def apply[V](v: V) = new UnNode[V](v)
 }
 
 trait Node[V] {
 
   val value: V
-  var edges: Set[Edge[V]] = Set[Edge[V]]()
+  var edges: Set[Edge[V]] = immutable.Set[Edge[V]]()
 
   override def equals(other: Any) = other match {
     case that: Node[V] => this.value == that.value

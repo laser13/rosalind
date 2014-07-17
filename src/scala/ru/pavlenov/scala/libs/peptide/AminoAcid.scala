@@ -29,7 +29,7 @@ class AminoAcid(val aa: String) {
     arr.map(AminoAcid.aa2spectrum)
   }
 
-  override def toString() = aa
+  override def toString = aa
 
 }
 
