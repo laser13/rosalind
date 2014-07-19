@@ -1,6 +1,5 @@
 package ru.pavlenov.bio.chapter.rosalind.string_algoritm;
 
-import com.sun.java.swing.plaf.motif.resources.motif;
 import net.sf.jfasta.impl.FASTAElementIterator;
 import net.sf.jfasta.impl.FASTAFileReaderImpl;
 import org.apache.commons.lang.StringUtils;

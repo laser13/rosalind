@@ -1,12 +1,10 @@
 package ru.pavlenov.bio.chapter.rosalind.alignment;
 
-import com.sun.java.swing.plaf.motif.resources.motif;
 import net.sf.jfasta.impl.FASTAElementIterator;
 import net.sf.jfasta.impl.FASTAFileReaderImpl;
 import org.apache.commons.lang.StringUtils;
 import ru.pavlenov.bio.amino.InvalidAlphabetException;
 import ru.pavlenov.bio.amino.LocalAlignment;
-import ru.pavlenov.bio.genome.DNAArray;
 import ru.pavlenov.bio.genome.Kmer;
 import ru.pavlenov.bio.utils.Dump;
 import ru.pavlenov.bio.utils.File;
@@ -14,7 +12,6 @@ import ru.pavlenov.bio.utils.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.Charset;
-import java.util.HashMap;
 
 /**
  * Created by laser13 on 28.06.14.

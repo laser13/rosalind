@@ -15,7 +15,7 @@ import scala.collection.immutable
 class DiNode[V](val value: V) extends Node[V] {
 
   var color = Color.WHITE
-  var score: (Int, Option[DiNode[V]]) = (0, None)
+  var score: (Option[Int], Option[DiNode[V]]) = (None, None)
   var in: Set[DiEdge[V]] = immutable.Set[DiEdge[V]]()
   var out: Set[DiEdge[V]] = immutable.Set[DiEdge[V]]()
 

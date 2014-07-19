@@ -13,27 +13,7 @@ object Main extends App {
 
   println("Running scala...\n\n")
 
-  Base.timed {
-    Ddeg.start()
-
-//    ForFun.curring1(4)(5)
-//    ForFun.curring1(4){5}
-//    ForFun.curring1 {4} {5}
-//    ForFun.curring2(5) { v =>
-//      v * v
-//    }
-//    ForFun.curring3(50) { v =>
-//      v * v * v
-//    }
-//    ForFun.curring4(4) { v =>
-//      v + 5 } { v =>
-//      v - 4
-//    }
-//
-//    ForFun.curring4(4) andThen { v => v + 5 } andThen { v => v - 4 }
-//    ForFun.curring(f => { f * 3 }) andThen(f => { "ready" })
-
-  }
+  Base.timed { Bfs.start() }
 
 }
 

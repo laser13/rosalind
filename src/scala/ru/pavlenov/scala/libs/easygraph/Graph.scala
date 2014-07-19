@@ -61,6 +61,13 @@ class DiGraph[V] {
 
 object DiGraph {
   def apply[E](): DiGraph[E] = new DiGraph[E]()
+
+  def apply(list: Array[(Int, Int)]): DiGraph[Int] = { import EdgePredef._
+    val graph = DiGraph[Int]()
+    for (i <- 1 to list.head._1) graph <* i
+    for (edge <- list.tail) graph <~ (edge._1 ~> edge._2)
+    graph
+  }
 }
 
 /**
@@ -122,6 +129,7 @@ object UnGraph {
     for (edge <- list.tail) graph <~ (edge._1 ~ edge._2)
     graph
   }
+
 }
 
 object EdgePredef {

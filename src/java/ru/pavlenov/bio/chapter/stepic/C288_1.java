@@ -5,7 +5,6 @@ import ru.pavlenov.bio.graph2.DefaultEdge;
 import ru.pavlenov.bio.graph2.UndirectedGraph;
 import ru.pavlenov.bio.utils.Dump;
 import ru.pavlenov.bio.utils.File;
-import sun.net.www.content.text.plain;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

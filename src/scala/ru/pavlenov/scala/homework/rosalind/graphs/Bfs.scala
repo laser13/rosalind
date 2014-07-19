@@ -1,5 +1,8 @@
 package ru.pavlenov.scala.homework.rosalind.graphs
 
+import ru.pavlenov.scala.libs.easygraph.{Algor, DiGraph, UnGraph}
+import ru.pavlenov.scala.utils.File
+
 /**
  * ⓭ + 20
  * Какой сам? by Pavlenov Semen 17.07.14.
@@ -21,6 +24,14 @@ object Bfs {
     println("from http://rosalind.info/problems/bfs/")
     println("==========================")
 
+    val data = File.fromData(this).map(_ split "\\s").map(e => (e(0).toInt, e(1).toInt))
+    val graph = DiGraph(data)
+
+//    println(graph.edges)
+//    println(graph.nodes)
+
+    val dist = Algor.shortestPathsBellmanFord(graph, 1)
+    println(dist.map(d => if (d == Int.MaxValue/2) -1 else d).mkString(" "))
 
   }
 
