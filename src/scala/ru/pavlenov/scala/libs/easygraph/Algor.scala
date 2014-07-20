@@ -1,6 +1,5 @@
 package ru.pavlenov.scala.libs.easygraph
 
-import scala.collection.immutable
 import scala.collection.mutable.ArrayBuffer
 
 /**
@@ -14,6 +13,9 @@ import scala.collection.mutable.ArrayBuffer
  */
 object Algor {
 
+  val infinitiInt = (0.9 * Int.MaxValue).toInt
+  val infinitiLong = (0.7 * Long.MaxValue).toLong
+
   /**
    * Ищем кратчайшие расстояния от указанного узла до остальных
    *
@@ -22,19 +24,16 @@ object Algor {
   def findShortestPaths(graph: DiGraph[Int], start: Int) = {
 
     val dist = new Array[Int](graph.nodes.size)
-    for (i <- 0 until dist.length) dist(i) = Int.MaxValue-100
+    for (i <- 0 until dist.length) dist(i) = infinitiInt
     dist(start-1) = 0
 
     val nodes = topologicalSort(graph)
     for (node <- nodes) {
       for (e <- node.out) {
-        update(e.nodes)
+        setMin(dist, e.nodes)
       }
     }
 
-    def update(e: (Int, Int)) {
-      dist(e._2-1) = math.min(dist(e._2-1), dist(e._1-1) + 1)
-    }
     dist
   }
 
@@ -42,58 +41,59 @@ object Algor {
    * Ищем самый длинный путь (динамическое программирование)
    *
    * @param graph
-   * @tparam V
    * @return
    */
-  def findLongestPath[V](graph: DiGraph[V]) = {
+  def findLongestPath(graph: DiGraph[Int]) = {
+
+    val scores, path = new Array[Int](graph.nodes.size)
+    for (i <- 0 until scores.length) scores(i) = 0
 
     // Считаем очки для всех узлов
-    def calcScore(node: DiNode[V]) {
+    def calcScore(node: DiNode[Int]) {
 
       // Пришла нода, посмотрим кто на неё ссылается, и какие очки были у них
       // Выберем максимальный и запишем для текущей
-      var maxScore = Some(Int.MinValue)
-      var maxEdge: Option[DiNode[V]] = None
+      var maxScore = 0
+      var maxNode = node.value
       for (edge <- node.in) {
         val prevNode = graph ? edge._1
-        val score1 = prevNode.score._1.getOrElse(0) + 1
-        if (maxScore.get < score1) { maxScore = Some(score1); maxEdge = Option(prevNode) }
+        val score = scores(|<(prevNode.value)) + edge._w
+        if (maxScore < score) { maxScore = score; maxNode = prevNode.value }
       }
-      node.score = (if (maxScore.getOrElse(0) == Int.MinValue) None else maxScore, maxEdge)
+      scores(|<(node.value)) = maxScore
+      path(|<(node.value)) = maxNode
     }
 
     /**
      * Строит путь основываясь на подсчитанных баллах
-     * @param graph
      */
-    def track(graph: DiGraph[V]) = {
+    def track() = {
 
       // Сюда будем складывать путь
-      var path = List[DiNode[V]]()
+      var maxPath = List[Int]()
 
       // Первым делом нужно найти узел с максимальным счётом
-      var startNode: Option[DiNode[V]] = None
+      var startNode = 0
       var maxScore = 0
-      graph.nodes.toArray.foreach(pair => {
-        val score = pair._2.score
-        if (score._1.get > maxScore) {
-          maxScore = score._1.get
-          startNode = Option(pair._2)
+      for (i <- 0 until scores.length) {
+        if (scores(i) > maxScore) {
+          maxScore = scores(i)
+          startNode = |>(i)
         }
-      })
+      }
 
       // Теперь просто разворачиваем этот клубок пока не упрёмся
-      while (startNode.nonEmpty) {
-        path = path :+ startNode.get
-        startNode = startNode.get.score._2
+      while (startNode > 0) {
+        maxPath = maxPath :+ startNode
+        startNode = path(|<(startNode))
       }
-      path.reverse
+      maxPath.reverse
     }
 
     // Для топологически отсортированного графа считаем очки для каждого узла
     val nodes = topologicalSort(graph)
     for (node <- nodes) calcScore(node)
-    track(graph)
+    track()
 
   }
 
@@ -102,23 +102,25 @@ object Algor {
    * http://habrahabr.ru/post/100953/
    *
    * @param graph
-   * @tparam V
    * @return
    */
-  def topologicalSort[V](graph: DiGraph[V]) = {
+  def topologicalSort(graph: DiGraph[Int]) = {
 
-    var resultSort = ArrayBuffer[DiNode[V]]()
-    def dfs(node: DiNode[V]): Boolean = {
-      node.color match {
+    val colors = new Array[Color.Value](graph.nodes.size)
+    for (i <- 0 until colors.length) colors(i) = Color.WHITE
+
+    var resultSort = ArrayBuffer[DiNode[Int]]()
+    def dfs(node: DiNode[Int]): Boolean = {
+      colors(|<(node.value)) match {
         case Color.GRAY => false
         case Color.BLACK => true
         case _ =>
-          node.color = Color.GRAY
+          colors(|<(node.value)) = Color.GRAY
           for (edge <- node.out) {
             val n = graph ? edge._2
             if (!dfs(n)) return false
           }
-          node.color = Color.BLACK
+          colors(|<(node.value)) = Color.BLACK
           resultSort += node
           true
       }
@@ -161,23 +163,19 @@ object Algor {
    */
   def shortestPathsBellmanFord(graph: DiGraph[Int], start: Int) = {
 
-    def |(i: Int) = i-1
-
     val nodes = graph.nodes
 
-    val dist, track = new Array[Int](graph.nodes.size)
-    for (i <- 0 until dist.length) dist(i) = Int.MaxValue/2
-    dist(|(start)) = 0
+    println("Nodes: " + graph.nodes.size)
+    println("Edges: " + graph.edges.size)
+
+    val dist, track = new Array[Long](graph.nodes.size)
+    for (i <- 0 until dist.length) dist(i) = infinitiLong
+    dist(|<(start)) = 0
 
     for (i <- 0 until nodes.size; e <- graph.edges) {
-      update(e.nodes, 1)
-    }
-
-    def update(e: (Int, Int), w: Int) {
-      dist(|(e._2)) = math.min(dist(|(e._2)), dist(|(e._1)) + w)
+      setMin(dist, e.nodes)
     }
     dist
-
   }
 
   /**
@@ -192,6 +190,68 @@ object Algor {
    */
   def shortestPathsDijkstra(graph: DiGraph[Int], start: Int) = {
 
+    val track = new Array[Int](graph.nodes.size)
+    val dist = Array.ofDim[Int](graph.nodes.size, 2)
+
+    for (i <- 0 until dist.length) dist(i)(0) = infinitiInt
+    track(|<(start)) = start
+
+    def get(i: Int) = dist(|<(i))(0)
+    def set(i: Int, v: Int) = dist(|<(i))(0) = v
+    def find(): Int = {
+      var min = infinitiInt; var v = 0
+      for (i <- 0 until dist.length) if (dist(i)(0) < min && dist(i)(1) == 0) { min = dist(i)(0); v = |>(i) }
+      if (min != infinitiInt) dist(|<(v))(1) = 1
+      v
+    }
+
+    set(start, 0)
+    var curr = find()
+    while (curr > 0) {
+      val node = graph ? curr
+//      for (edge <- node.in) {
+//        val f = edge._f
+//        if (get(f) > get(curr) + edge._w) set(f, get(curr) + edge._w)
+//      }
+
+      for (edge <- node.out) {
+        val t = edge._t
+        if (get(t) > get(curr) + edge._w) set(t, get(curr) + edge._w)
+      }
+      curr = find()
+    }
+    dist
+
+  }
+
+  def findSubGraphs(graph: UnGraph[Int]) = {
+    var count = 0
+    var nodes = graph.nodes
+    while (nodes.size > 0) {
+      val curr = nodes.headOption.get._2
+      count += 1
+      walk(curr)
+    }
+
+    def walk(node : UnNode[Int]) {
+      nodes = nodes - node.value
+      for (edge <- node.edges) {
+        val v = if (edge._1 == node.value) edge._2 else edge._1
+        if (nodes.contains(v)) walk(nodes(v))
+      }
+    }
+    count
+  }
+
+  def |<(i: Int) = i-1
+  def |>(i: Int) = i+1
+
+  def setMin(dist: Array[Int], e: (Int, Int, Int)) {
+    dist(e._2-1) = math.min(dist(e._2-1), dist(e._1-1) + e._3)
+  }
+
+  def setMin(dist: Array[Long], e: (Int, Int, Int)) {
+    dist(e._2-1) = math.min(dist(e._2-1), dist(e._1-1) + e._3)
   }
 
 }

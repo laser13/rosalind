@@ -28,7 +28,7 @@ public class Main {
 //        Dump.println(112 % 9);
 //        Dump.println(((-5 % 9) + 9) % 9);
 
-        Mrna.start();
+        C294_3.start();
 
         long end = System.nanoTime();
 

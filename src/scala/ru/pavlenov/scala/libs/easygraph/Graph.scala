@@ -11,7 +11,7 @@ import scala.collection.immutable
  * ${GIVEN}
  * ${RETURN}
  */
-class DiGraph[V] {
+class DiGraph[V] extends Graph[V]{
 
   type Nodes = Map[V, DiNode[V]]
   type Edges = Set[DiEdge[V]]
@@ -57,6 +57,8 @@ class DiGraph[V] {
 
   def findRoots(): Nodes = (for((v, n) <- nodes if n.out.size > 0 && n.in.size == 0  ) yield (v, n)).toMap
 
+  override def toString = "nodes: " + nodes.size + "\n    " + nodes.keys + "\nedges: " + edges.size + "\n   " + edges
+
 }
 
 object DiGraph {
@@ -68,13 +70,21 @@ object DiGraph {
     for (edge <- list.tail) graph <~ (edge._1 ~> edge._2)
     graph
   }
+
+  def apply(list: Array[(Int, Int, Int)]): DiGraph[Int] = { import EdgePredef._
+    val graph = DiGraph[Int]()
+    for (i <- 1 to list.head._1) graph <* i
+    for (edge <- list.tail) graph <~ DiEdge[Int](edge)
+    graph
+  }
+
 }
 
 /**
  * Undirectional graph
  * @tparam V node value type
  */
-class UnGraph[V] {
+class UnGraph[V] extends Graph[V] {
 
   type Nodes = Map[V, UnNode[V]]
   type Edges = Set[UnEdge[V]]
@@ -118,6 +128,8 @@ class UnGraph[V] {
     nodes += (value2 -> node2)
   }
 
+  override def toString = "UnGraph\nnodes: " + nodes.size + "\n    " + nodes.keys + "\nedges: " + edges.size + "\n   " + edges
+
 }
 
 object UnGraph {
@@ -129,6 +141,11 @@ object UnGraph {
     for (edge <- list.tail) graph <~ (edge._1 ~ edge._2)
     graph
   }
+
+}
+
+sealed class Graph[V] {
+
 
 }
 

@@ -3,6 +3,7 @@ package ru.pavlenov.scala
 import ru.pavlenov.scala.homework.rosalind.combinatorics._
 import ru.pavlenov.scala.homework.rosalind.graphs._
 import ru.pavlenov.scala.homework.rosalind.spectrometry._
+import ru.pavlenov.scala.homework.rosalind.string_algorithms.Trie
 import ru.pavlenov.scala.utils._
 
 /**
@@ -13,7 +14,7 @@ object Main extends App {
 
   println("Running scala...\n\n")
 
-  Base.timed { Bfs.start() }
+  Base.timed { Trie.start() }
 
 }
 

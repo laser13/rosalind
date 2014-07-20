@@ -21,7 +21,7 @@ public class C294_3 {
 
     public static void start() throws IOException {
 
-        String[] data = File.readFile("/home/semen/IdeaProjects/bio/src/ru/pavlenov/bio/chapter/stepic/C294_3.small", Charset.defaultCharset()).split("\n");
+        String[] data = File.readFile("/home/laser13/dev/java/rosalind/src/java/ru/pavlenov/bio/chapter/stepic/C294_3.data", Charset.defaultCharset()).split("\n");
 
         Arrays.sort(data);
 

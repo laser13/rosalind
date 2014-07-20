@@ -50,9 +50,9 @@ object Sgra {
     }
 
     // Ищем самый длинный путь в графе
-    val path = Algor.findLongestPath(graph)
+//    val path = Algor.findLongestPath(graph)
     // Превращаем его в аминокислоты
-    println(AminoAcid.spectro2aa(path.map(_.value)).mkString(""))
+//    println(AminoAcid.spectro2aa(path.map(_.value)).mkString(""))
   }
 
 }

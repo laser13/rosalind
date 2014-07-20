@@ -27,11 +27,8 @@ object Bfs {
     val data = File.fromData(this).map(_ split "\\s").map(e => (e(0).toInt, e(1).toInt))
     val graph = DiGraph(data)
 
-//    println(graph.edges)
-//    println(graph.nodes)
-
     val dist = Algor.shortestPathsBellmanFord(graph, 1)
-    println(dist.map(d => if (d == Int.MaxValue/2) -1 else d).mkString(" "))
+    println(dist.map(d => if (d == Algor.infinitiInt) -1 else d).mkString(" "))
 
   }
 
