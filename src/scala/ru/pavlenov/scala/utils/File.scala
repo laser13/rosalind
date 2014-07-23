@@ -10,7 +10,7 @@ object File {
 
   def getClassDir(clazz: AnyRef) = System.getProperty("user.dir") + "/src/scala/" + clazz.getClass.getName.replaceAll("\\.", "/").replace("$", "")
 
-  def fromData(clazz: AnyRef) = Source.fromFile(getClassDir(clazz) + ".data").getLines().filterNot(_.isEmpty).toArray
+  def fromData(implicit clazz: AnyRef) = Source.fromFile(getClassDir(clazz) + ".data").getLines().filterNot(_.isEmpty).toArray
 
   def readFasta(clazz: AnyRef) = {
     val header = """>(.+)(\|.+)?""".r

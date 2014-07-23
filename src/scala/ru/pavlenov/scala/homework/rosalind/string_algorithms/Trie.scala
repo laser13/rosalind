@@ -1,6 +1,6 @@
 package ru.pavlenov.scala.homework.rosalind.string_algorithms
 
-import ru.pavlenov.bio.graph2.Trie
+import ru.pavlenov.scala.libs.easygraph.Trie
 import ru.pavlenov.scala.utils.File
 
 /**
@@ -30,9 +30,10 @@ object Trie {
     val data = File.fromData(this).sorted
 
     val trie = new Trie()
-    for (str <- data) trie.addString(str)
 
-    println(trie.getNodes)
+    for (str <- data) trie.insertString(str)
+
+    trie.printTrie()
 
   }
 
