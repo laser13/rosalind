@@ -3,7 +3,7 @@ package ru.pavlenov.scala
 import ru.pavlenov.scala.homework.rosalind.combinatorics._
 import ru.pavlenov.scala.homework.rosalind.graphs._
 import ru.pavlenov.scala.homework.rosalind.spectrometry._
-import ru.pavlenov.scala.homework.rosalind.string_algorithms.Trie
+import ru.pavlenov.scala.homework.rosalind.string_algorithms._
 import ru.pavlenov.scala.utils._
 
 /**
@@ -11,11 +11,8 @@ import ru.pavlenov.scala.utils._
  * Какой сам? by Pavlenov Semen 04.07.14.
  */
 object Main extends App {
-
   println("Running scala...\n\n")
-
-  Base.timed { Trie.start() }
-
+  Base.timed { Itwv.start() }
 }
 
 object ForFun {

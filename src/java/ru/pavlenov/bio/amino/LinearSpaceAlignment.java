@@ -89,7 +89,6 @@ public class LinearSpaceAlignment {
 
     }
 
-
     public Node getMiddleNode(int top, int bottom, int left, int right) throws InvalidAlphabetException {
 
         int middle = ((left + right) / 2) + 1;

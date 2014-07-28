@@ -1,5 +1,9 @@
 package ru.pavlenov.scala.homework.rosalind.string_algorithms
 
+import ru.pavlenov.bio.amino._
+import ru.pavlenov.scala.libs.algorithm.string.ShortestCommonSupersequence
+import ru.pavlenov.scala.utils.File
+
 /**
  * ⓭ + 55
  * Какой сам? by Pavlenov Semen 22.07.14.
@@ -21,6 +25,14 @@ object Scsp {
     println("from http://rosalind.info/problems/scsp/")
     println("==========================")
 
+    val data = File.fromData(this)
+    val strI = data(0)
+    val strJ = data(1)
+
+    val scs = ShortestCommonSupersequence(strI, strJ)
+
+    println(scs.find())
+    println("GTCGATGAACCATCATCAACTTGGCGACCGTGAGACGCATTGCTTGAAAGCGCTTGACGAGTCATCTAGTCTCACCGACTCACTGATTCGGGACTTTAAGGGATTAGGGTATGATGTGACCGT")
 
   }
 
