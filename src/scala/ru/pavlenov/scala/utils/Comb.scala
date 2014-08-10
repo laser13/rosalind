@@ -28,6 +28,8 @@ object Comb {
    * Число сочетаний без повторений (n различных элементов, взятых по m)
    * http://www.webmath.ru/web/prog21_1.php
    *
+   * C(k,n) = n! / (k! * (n-k)!)
+   *
    * Сочетаниями из n элементов по m элементов называются комбинации, составленные из данных n элементов по m элементов,
    * которые различаются хотя бы одним элементом
    * (отличие сочетаний от размещений в том, что в сочетаниях не учитывается порядок элементов).
@@ -36,16 +38,18 @@ object Comb {
    * @param k
    * @return
    */
-  def choose(n: Int, k: Int): Long = {
+  def choose(n: Int, k: Int): BigInt = {
     // Use symmetry of Pascal's triangle
     val j = if (k > n - k) n - k else k
-    var result: Long = 1
+    var result: BigInt = 1
     for (i <- 1 to j) {
       result *= (n - (j - i))
       result /= i
     }
     result
   }
+
+  def chooseLog10(n: Int, k: Int): Double = factLog10(n) - ( factLog10(k) + factLog10(n-k) )
 
   /**
    * Число размещений без повторений из n по m
@@ -80,5 +84,7 @@ object Comb {
    * @return
    */
   def fact(n: Int): BigInt = (1 to n).map(BigInt.int2bigInt).product
+
+  def factLog10(n: Int): Double = (1 to n).map(math.log10(_)).sum
 
 }

@@ -1,5 +1,8 @@
 package ru.pavlenov.scala.homework.rosalind.algorithms.graph
 
+import ru.pavlenov.scala.utils.File
+import ru.pavlenov.scala.libs.easygraph
+
 /**
  * ⓭ + 02
  * Какой сам? by Pavlenov Semen 02.08.14.
@@ -21,6 +24,13 @@ object Suff {
     println("from http://rosalind.info/problems/Suff/")
     println("==========================")
 
+    val data = File.fromData(this)(0)
+
+    val trie = new easygraph.Trie()
+
+    for (i <- 0 until data.length) trie.insertString(data.substring(i))
+
+    trie.printTrieSub()
 
   }
 

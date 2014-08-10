@@ -30,4 +30,19 @@ object Prob {
 
   }
 
+  /**
+   * Испытания Бернулли
+   * @param k число
+   * @param n число испытаний
+   */
+  def binom(k: Int, n: Int, p: Double = 0.5): Double = {
+    val c = Comb.choose(k, n)
+    (math.log10(p) * k) + (math.log10(1-p) * (n-k)) + math.log10(c.toDouble)
+  }
+
+  def log10binom(k: Int, n: Int, p: Double): Double = {
+    val c = Comb.choose(k, n)
+    (math.log10(p) * k) + (math.log10(1-p) * (n-k)) + math.log10(c.toDouble)
+  }
+
 }

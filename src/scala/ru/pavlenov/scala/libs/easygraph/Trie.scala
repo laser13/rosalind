@@ -1,6 +1,8 @@
 package ru.pavlenov.scala.libs.easygraph
 
 import scala.collection.mutable
+import scala.collection.mutable.ArrayBuffer
+import scala.util.Sorting
 import scalax.collection.immutable.SortedArraySet
 
 /**
@@ -16,37 +18,72 @@ import scalax.collection.immutable.SortedArraySet
 class Trie {
 
   var n = 1
-  val root = new TrieNode('*', n)
+  val root = new Node('*', n, 0)
 
-  class TrieNode(val value: Char, val index: Int, val children: mutable.Map[Char, TrieNode] = mutable.HashMap[Char, TrieNode]()) {
-    var leaf = false
-    override def toString = index + "|" + children.toString()
-  }
+  val nodes = mutable.Map[Int, Node](1 -> root)
+
+  case class Node(value: Char, index: Int, depth: Int, parent: Int = 0, children: mutable.Map[Char, Int] = mutable.HashMap[Char, Int]())
 
   def insertString(str: String) {
     var curr = root
     for (ch <- str) {
       if (!curr.children.contains(ch)) {
         n += 1
-        curr.children += (ch -> new TrieNode(ch, n))
+        nodes += (n -> Node(value = ch, index = n, depth = curr.depth+1, parent = curr.index))
+        curr.children += (ch -> n)
       }
-      curr = curr.children(ch)
+      curr = nodes(curr.children(ch))
     }
-    curr.leaf = true
   }
 
   def printTrie() = {
     pr(root)
 
-    def pr(curr: TrieNode) {
-      for ((ch, node) <- curr.children) {
-        println(curr.index + " " + node.index+ " " + ch)
-        pr(node)
+    def pr(curr: Node) {
+      println(curr.value + "-" + curr.depth + "-" + curr.children.size + " | ")
+      for ((ch, index) <- curr.children) {
+        pr(nodes(index))
       }
     }
   }
 
-  override def toString = root.toString
+  def printTrieSub() = {
+
+    var list = ArrayBuffer[String]()
+    pr("", root)
+
+    println(Sorting.stableSort(list).mkString("\n"))
+    
+    def pr(s: String, curr: Node) {
+
+      var sub = s
+      if (curr.parent > 0) {
+        val parent = nodes(curr.parent)
+        if (parent.children.size > 1) sub = ""
+//        if (curr.value == '$' && parent.value != '*' && sub == "") sub = parent.value+""
+      }
+
+      if (curr.value == '$') {
+        list += (sub + curr.value)
+      }
+      if (curr.children.size > 1) {
+        if (!hasEnd(curr.children)) list += (sub + curr.value)
+      } else {
+        sub += curr.value
+      }
+
+      if (curr.children.size > 0) {
+        for ((ch, index) <- curr.children) {
+          pr(sub, nodes(index))
+        }
+      }
+    }
+
+    def hasEnd(children: mutable.Map[Char, Int]): Boolean = {
+      children.exists(e => e._1 == '$')
+    }
+
+  }
 
 }
 

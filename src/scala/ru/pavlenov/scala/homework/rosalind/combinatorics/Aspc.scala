@@ -1,6 +1,6 @@
 package ru.pavlenov.scala.homework.rosalind.combinatorics
 
-import ru.pavlenov.scala.utils.File
+import ru.pavlenov.scala.utils.{Comb, File}
 
 /**
  * ⓭ + 39
@@ -23,7 +23,15 @@ object Aspc {
     println("from http://rosalind.info/problems/Aspc/")
     println("==========================")
 
-    val data = File.fromData(this)
+    val n = 1641
+    val m = 645
+
+    var sum = BigInt(0)
+    for (k <- m to n) {
+      sum += Comb.choose(n, k) % 1000000
+    }
+
+    println(sum % 1000000)
 
   }
 

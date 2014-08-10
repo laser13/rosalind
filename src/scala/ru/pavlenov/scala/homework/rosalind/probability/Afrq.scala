@@ -23,7 +23,9 @@ object Afrq {
     println("from http://rosalind.info/problems/Afrq/")
     println("==========================")
 
-    val data = File.fromData(this)
+    val data = File.fromData(this)(0).split(" ").map(_ toFloat).map(p => 2*math.sqrt(p) - p)
+
+    println(data.map("%.3f".format(_).replace(",", ".")).mkString(" "))
 
   }
 
