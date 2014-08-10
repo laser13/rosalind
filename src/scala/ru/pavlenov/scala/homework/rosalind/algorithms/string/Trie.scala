@@ -1,4 +1,4 @@
-package ru.pavlenov.scala.homework.rosalind.string_algorithms
+package ru.pavlenov.scala.homework.rosalind.algorithms.string
 
 import ru.pavlenov.scala.libs.easygraph.Trie
 import ru.pavlenov.scala.utils.File
