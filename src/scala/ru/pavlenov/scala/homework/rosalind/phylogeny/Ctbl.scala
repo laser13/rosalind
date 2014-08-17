@@ -1,5 +1,6 @@
 package ru.pavlenov.scala.homework.rosalind.phylogeny
 
+import ru.pavlenov.scala.libs.easygraph.{TreeNode, NewickParser, Tree}
 import ru.pavlenov.scala.utils.File
 
 /**
@@ -24,6 +25,30 @@ object Ctbl {
     println("==========================")
 
     val data = File.fromData(this)
+    val tree = Tree(data.head, new NewickParser(TreeNode.apply))
+
+//    tree.display()
+
+    val allLeaves = tree.getLeaves().sorted
+
+    println(allLeaves)
+
+    def printLine(node: TreeNode) = {
+      val leaves = tree.getLeaves(node)
+      var line = List[Int]()
+
+      for (leave <- allLeaves) {
+        if (leaves.contains(leave)) line = line :+ 1
+        else line = line :+ 0
+      }
+      line.mkString(" ")
+    }
+
+    tree.deep(tree.root, (node: TreeNode) => {
+      if (node.parent != None && node.children != None) {
+        println(printLine(node))
+      }
+    })
 
   }
 

@@ -1,5 +1,6 @@
 package ru.pavlenov.scala.homework.rosalind.phylogeny
 
+import ru.pavlenov.scala.libs.easygraph.{TreeNode, NewickParser, Tree}
 import ru.pavlenov.scala.utils.File
 
 /**
@@ -24,6 +25,16 @@ object Nwck {
     println("==========================")
 
     val data = File.fromData(this)
+
+
+    data.sliding(2, 2).toList.map(el => {
+      val tree = Tree(el.head, new NewickParser(TreeNode.apply))
+      val species = el(1).split(" ")
+//      tree.display()
+      print(tree.distanse(species(0), species(1)).toInt + " ")
+    })
+    println()
+    println("54 6 31 13 12 68 5 12 17 17 2 18 11 23 2 13 33 17 7 5 6 2 7 7 2 13 2 22 12 2 2 9 2 16")
 
   }
 

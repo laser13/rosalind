@@ -4,7 +4,8 @@ import ru.pavlenov.scala.homework.rosalind.algorithms.string._
 import ru.pavlenov.scala.homework.rosalind.combinatorics._
 import ru.pavlenov.scala.homework.rosalind.div_and_con.Bins
 import ru.pavlenov.scala.homework.rosalind.graphs._
-import ru.pavlenov.scala.homework.rosalind.probability.{Afrq, Indc}
+import ru.pavlenov.scala.homework.rosalind.phylogeny._
+import ru.pavlenov.scala.homework.rosalind.probability._
 import ru.pavlenov.scala.homework.rosalind.spectrometry._
 import ru.pavlenov.scala.homework.rosalind.algorithms.graph._
 import ru.pavlenov.scala.utils._
@@ -15,7 +16,7 @@ import ru.pavlenov.scala.utils._
  */
 object Main extends App {
   println("Running scala...\n\n")
-  Base.timed { Afrq.start() }
+  Base.timed { Ctbl.start() }
 }
 
 object ForFun {

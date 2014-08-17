@@ -115,6 +115,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-parser-combinators</artifactId>
+            <version>2.11.0-M4</version>
+        </dependency>
+
     </dependencies>
 
     <repositories>
