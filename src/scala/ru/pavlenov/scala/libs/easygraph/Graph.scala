@@ -1,6 +1,42 @@
 package ru.pavlenov.scala.libs.easygraph
 
+import ru.pavlenov.scala.utils.Str
+
 import scala.collection.immutable
+import scala.collection.mutable
+
+class DeBrGraph[V] extends DiGraph[V]{
+
+}
+
+object DeBrGraph {
+
+  def apply[E](data: Array[String]): DeBrGraph[E] = { import EdgePredef._
+
+    val gr = new DeBrGraph[E]()
+    val result = mutable.Map[String, mutable.ArrayBuffer[String]]()
+    for (kmer <- data) {
+      val prefix: String = Str.pref(kmer, kmer.length -1)
+      val suffix: String = Str.suff(kmer, kmer.length -1)
+
+
+      if (result.contains(prefix)) {
+        result.get(prefix).get += suffix
+      }
+      else {
+        val list = mutable.ArrayBuffer[String]()
+        list += suffix
+        result += (prefix -> list)
+      }
+    }
+
+    println(result)
+
+
+    gr
+  }
+
+}
 
 /**
  * ⓭ + 33

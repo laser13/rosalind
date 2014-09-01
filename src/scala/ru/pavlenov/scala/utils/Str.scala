@@ -20,7 +20,7 @@ object Str {
    * @param l
    * @return
    */
-  def pref(str: String, l: Int): String = str.substring(0, l)
+  def pref(str: String, l: Int = 1): String = str.substring(0, l)
 
   /**
    * Суффикс строки длины l
@@ -28,6 +28,6 @@ object Str {
    * @param l
    * @return
    */
-  def suff(str: String, l: Int): String = str.substring(str.length - l, str.length)
+  def suff(str: String, l: Int = 1): String = str.substring(str.length - l, str.length)
 
 }

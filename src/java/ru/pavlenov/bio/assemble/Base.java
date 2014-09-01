@@ -25,6 +25,12 @@ public class Base {
 
     }
 
+    public static String getShortestSuperstring(String[] reads, int minLenOverlap) {
+        List<String> tmp = new ArrayList<>();
+        Collections.addAll(tmp, reads);
+        return getShortestSuperstring(tmp, minLenOverlap);
+    }
+
     /**
      * Пытаемся сопоставить кусочки ДНК (read) различной длины и перехлёстов
      * @param reads
@@ -38,9 +44,7 @@ public class Base {
         while (!reads.isEmpty()) {
 
             ArrayList<String> removes = new ArrayList<>();
-            for (int i = 0; i < reads.size(); i++) {
-
-                String read = reads.get(i);
+            for (String read : reads) {
 
                 // Если рид уже есть в суперстроке, то идём дальше
                 if (superstring.contains(read)) {
@@ -66,9 +70,7 @@ public class Base {
             }
 
             if (!removes.isEmpty()) {
-                for (String remove : removes) {
-                    reads.remove(remove);
-                }
+                removes.forEach(reads::remove);
                 removes.clear();
             }
 
