@@ -21,14 +21,14 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InvalidAlphabetException, InterruptedException {
 
-        Dump.println("START JOB!");
+        Dump.println("START JOB!!");
 
         long start = System.nanoTime();
 
 //        Dump.println(112 % 9);
 //        Dump.println(((-5 % 9) + 9) % 9);
 
-        C296_4.start();
+        Rear.start();
 
         long end = System.nanoTime();
 

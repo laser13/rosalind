@@ -87,4 +87,47 @@ object Comb {
 
   def factLog10(n: Int): Double = (1 to n).map(math.log10(_)).sum
 
+  /**
+   * Меняем местами индексы и значения в массиве
+   * @param a
+   * @return
+   */
+  def inversePermutation(a: Array[Int]) = {
+    val res = new Array[Int](a.length)
+    for (i <- 0 until a.length) res(a(i) - 1) = i + 1
+    res
+  }
+
+  /**
+   * Производим перестановку значений одного массива согласно значениям вторгго в качестве индекса
+   * @param sourceValue
+   * @param sourceIndex
+   * @return
+   */
+  def applyPermutation(sourceValue: Array[Int], sourceIndex: Array[Int]) = {
+    val res = new Array[Int](sourceIndex.length)
+    var pos = 0
+    for (i <- sourceIndex) {
+      res(pos) = sourceValue(i-1)
+      pos += 1
+    }
+    res
+  }
+
+  def reverse(a: Array[Int], i: Int, j: Int) = a.take(i) ++ a.drop(i).take(j-i).reverse ++ a.drop(j)
+
+  def reversalDistance(a: Array[Int], b: Array[Int]) = {
+    val b1 = inversePermutation(b)
+    var a1 = applyPermutation(b1, a)
+    val l = a.length
+    var dist = 0
+    for (j <- l to 1 by -1; i <- 0 until l) if (a1(i) == j && (j - i) > 1) {
+      a1 = reverse(a1, i, j)
+//      println(a1.mkString(" "))
+      println(i+1 + " " + j)
+      dist += 1
+    }
+    dist
+  }
+
 }

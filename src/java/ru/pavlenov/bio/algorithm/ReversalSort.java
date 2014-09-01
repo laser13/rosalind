@@ -18,16 +18,14 @@ public class ReversalSort {
             if (p[index] != i && p[index] != -i) {
                 p = reversal(p, i);
                 dist += 1;
-//                out.write(Dump.printfln(p)); out.newLine();
-//                out.flush();
+                Dump.println(p);
             }
 
             try {
                 if (p[index] == -i) {
                     p[index] = i;
                     dist += 1;
-                    //                out.write(Dump.printfln(p)); out.newLine();
-                    //                out.flush();
+                    Dump.println(p);
                 }
             }
             catch (NullPointerException e) {
