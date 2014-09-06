@@ -10,6 +10,12 @@ target/
 *.war
 *.ear
 *.iml
+*.answer
+*.fq
+*.fastq
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+src/scala/ru/pavlenov/scala/homework/rosalind/ngs/fastx_toolkit/bin
+src/scala/ru/pavlenov/scala/homework/rosalind/ngs/Trimmomatic-0.32
