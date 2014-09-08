@@ -21,6 +21,6 @@ import ru.pavlenov.scala.utils._
 object Main extends App {
   println("Running scala...\n\n")
   Base.timed {
-    Ins.start()
+    ThreeSum.start()
   }
 }

@@ -1,6 +1,6 @@
 package ru.pavlenov.scala.homework.rosalind.sorting
 
-import ru.pavlenov.scala.utils.File
+import ru.pavlenov.scala.utils.{Sort, File}
 
 /**
  * ⓭ + 07
@@ -15,6 +15,8 @@ import ru.pavlenov.scala.utils.File
 
 object Mer {
 
+  implicit def IntIntLessThan(x: Int, y: Int) = x < y
+
   def start() {
 
     val t1 = "Merge Two Sorted Arrays"
@@ -24,6 +26,15 @@ object Mer {
 
     val data = File.fromData(this)
 
+    val n = data(0).toInt
+    val m = data(2).toInt
+
+    val a1 = data(1).split(" ").map(_ toInt).toList
+    val a2 = data(3).split(" ").map(_ toInt).toList
+
+    val res = Sort.merge(a1, a2)
+
+    println(res.mkString(" "))
 
   }
 

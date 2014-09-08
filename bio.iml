@@ -20,6 +20,10 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: com.assembla.scala-incubator:graph-core_2.11:1.9.0" level="project" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-reflect:2.11.1" level="project" />
+    <orderEntry type="library" name="Maven: org.biojava:biojava3-sequencing:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-parser-combinators:2.11.0-M4" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.11.1" level="project" />
     <orderEntry type="library" name="Maven: org.jscience:jscience:4.3.1" level="project" />
     <orderEntry type="library" name="Maven: org.javolution:javolution:5.2.3" level="project" />
