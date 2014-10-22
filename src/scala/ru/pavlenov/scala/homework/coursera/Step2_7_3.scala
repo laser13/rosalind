@@ -1,6 +1,9 @@
 package ru.pavlenov.scala.homework.coursera
 
+import ru.pavlenov.scala.libs.peptide.Peptide
 import ru.pavlenov.scala.utils.File
+
+import scala.concurrent.JavaConversions._
 
 /**
  * ⓭ + 58
@@ -24,6 +27,15 @@ object Step2_7_3 {
     println("==========================")
 
     val data = File.fromData(this)
+
+    val text = data(0)
+    val expSpectrum = data(1).split(" ").map(_.toInt)
+
+    val peptide = Peptide(text)
+
+//    println(peptide.cyclospectrum)
+
+    println(peptide.score(expSpectrum))
 
   }
 

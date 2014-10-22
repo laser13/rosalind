@@ -61,9 +61,9 @@ object AminoAcid {
     ('*', "Xxx", "Stop",          null,       0,        0.0d,       Array("UGA", "UAG", "UAA"))
   )
 
-  def aa2mass = aa.map(el => (el._1, el._5))
+  def aa2mass = aa.map(el => el._1 -> el._5)
 
-  def mass2aa = aa.map(el => (el._5, el._1))
+  def mass2aa = aa.map(el => el._5 -> el._1)
 
   def mass5aa: Map[Int,Char] = mass2aa.map(el => { ( el._1/100, el._2 ) }).toMap.withDefaultValue('*')
 
