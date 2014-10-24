@@ -22,6 +22,6 @@ import ru.pavlenov.scala.utils._
 object Main extends App {
   println("Running scala...\n\n")
   Base.timed {
-    Step2_7_3.start()
+    Step2_13_1.start()
   }
 }
