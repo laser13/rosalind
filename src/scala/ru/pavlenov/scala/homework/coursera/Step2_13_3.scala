@@ -1,5 +1,6 @@
 package ru.pavlenov.scala.homework.coursera
 
+import ru.pavlenov.scala.libs.peptide.Peptide
 import ru.pavlenov.scala.utils.File
 
 /**
@@ -24,6 +25,12 @@ object Step2_13_3 {
     println("==========================")
 
     val data = File.fromData(this)
+
+    val leaderboard = data(0).split(" ").toList
+    val spectrum = data(1).split(" ").map(_.toInt).toList
+    val n = data(2).toInt
+
+    println(Peptide.trim(leaderboard, spectrum, n).mkString(" "))
 
   }
 

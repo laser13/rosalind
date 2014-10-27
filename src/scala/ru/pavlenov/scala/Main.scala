@@ -22,6 +22,6 @@ import ru.pavlenov.scala.utils._
 object Main extends App {
   println("Running scala...\n\n")
   Base.timed {
-    Step2_13_1.start()
+    Quiz1_9.start()
   }
 }

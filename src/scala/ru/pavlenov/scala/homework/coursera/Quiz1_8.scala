@@ -6,4 +6,10 @@ package ru.pavlenov.scala.homework.coursera
  */
 object Quiz1_8 {
 
+  def start() = {
+    val text = "CGTGACAGTGTATGGGCATCTTT"
+    val kmer = "TGT"
+    println(Step1_8_5.countN(text, kmer, 1))
+  }
+
 }
